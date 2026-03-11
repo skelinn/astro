@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,100,700,900');
+
+.gg-outer {
+  display: table;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #3e3e3e;
+  background: radial-gradient(ellipse at center, #707070 13%, #333333 100%);
+  font-family: 'Roboto', sans-serif;
+}
+
+.gg-middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.gg-content {
+  max-width: 32em;
+  padding: 0 1.25em;
+  margin: 1.875em auto;
+  color: #c7c7c7;
+  text-align: center;
+  font-size: 1.72em;
+  font-weight: 100;
+  height: 22em;
+  background-repeat: no-repeat;
+  background-size: 32%;
+  background-position: center center;
+  background-image: url('/lock-icon.png');
+}
+
+.gg-content h1 {
+  color: #00aad7;
+  font-size: 2.5em;
+  margin: 0;
+  margin-bottom: -20px;
+}
+
+.gg-popspace {
+  opacity: 1;
+  position: absolute;
+  top: 190px;
+  left: 430px;
+  height: 100%;
+  width: 100%;
+}
+
+.gg-form {
+  border-radius: 2px;
+  padding: 20px 30px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  font-size: 14px;
+  font-weight: bold;
+  max-width: 350px;
+  margin: 20px 250px 0 35px;
+  float: left;
+  background-color: #dbdbdb;
+}
+
+.gg-pophead {
+  color: #00aad7;
+  margin: 0;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 100;
+}
+
+.gg-pophead2 {
+  color: #afafaf;
+  padding-top: 5px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  font-weight: 100;
+}
+
+.gg-password {
+  width: 292px;
+  height: 37px;
+  font-weight: 100;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.gg-unblockreq {
+  height: 130px;
+  width: 290px;
+  font-weight: 100;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  resize: none;
+}
+
+.gg-but {
+  background-image: linear-gradient(-1deg, #35b0d1 0%, #35b0d1 81%);
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.38);
+  border: none;
+  margin-left: 95px;
+  color: rgb(155, 213, 221);
+  font-size: 16px;
+  font-weight: 300;
+  width: 100px;
+  height: 35px;
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.gg-but:hover {
+  color: #e1e9f0;
+}

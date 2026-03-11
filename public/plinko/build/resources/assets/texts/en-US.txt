@@ -1,0 +1,121 @@
+utility.number.delimiter=%SPACE%
+utility.decimal.delimiter=.
+powerup.extraChip=Extra Chip
+powerup.magnet=Magnet
+powerup.createWall=Create Wall
+powerup.bouncyWall=Bouncy Wall
+powerup.bouncyPegs2=Bouncy Pegs
+powerup.pocket3000=Pocket +3000
+powerup.moreChips=2 Extra Chips
+powerup.chargingChip=Charging Chip
+powerup.goldenChip=Golden Chip
+powerup.removePeg=Remove Peg
+powerup.pocket6000=Pocket +6000
+powerup.clonerPeg=Cloning Peg
+powerup.clonerWall=Cloning Wall
+powerup.midasPeg=Midas Peg
+powerup.telePocket=Tele-Pocket
+powerup.x2Pocket=Multiplier Pocket
+powerup.create3Walls=Triple Walls
+powerup.bouncyWalls3=Bouncy Walls
+powerup.numeriousChips=3 Extra Chips
+powerup.remove3Pegs=Remove Pegs
+powerup.pocket10000=Pocket +10000
+powerup.pocket100K=Jackpot
+powerup.pocketsAllPlus=Bonanza
+powerup.clonerPegs2=Cloning Frenzy
+powerup.bucketRandomRespawn=Random
+Respawn
+powerup.spawnShrinkSmall=Spawn
+Shrink
+powerup.spawnShrinkLarge=Spawn
+Shrink
+Large
+powerInfo.extraChip=Adds 1 extra chip to the top of the stack
+powerInfo.magnet=Choose any peg to temporarily attract chips
+powerInfo.createWall=Adds a new Wall or replaces an existing one
+powerInfo.bouncyWall=Adds a new Bouncy Wall or replaces an existing wall to bounce chips
+powerInfo.bouncyPegs2=Transforms 2 pegs into Bouncy Pegs, which bounce chips when hit, generating more value
+powerInfo.pocket300=Choose any pocket to increase its value by +3000
+powerInfo.moreChips=Adds 2 extra chips to the top of the stack
+powerInfo.chargingChip=Adds a Charging Chip to the bottom of the stack
+This chip generates more and more value each time the next peg is hit
+powerInfo.goldenChip=Adds a Golden Chip to the bottom of the stack
+This chip generates 3x more score from any source
+powerInfo.removePeg=Choose a peg to remove it from the board
+powerInfo.pocket6000=Choose any pocket to increase its value by +6000
+powerInfo.clonerPeg=Choose any peg to turn it into a Cloning Peg
+This peg creates a clone of any chip that hits it
+powerInfo.clonerWall=Adds a new Cloning Wall or replaces an existing wall
+This wall creates a clone of any chip that hits it
+powerInfo.midasPeg=Choose any peg to turn it into a Midas Peg
+This peg turns any chip that hits it into a Golden Chip
+powerInfo.telePocket=Adds a portal to a pocket of your choice that teleports 5 chips to the top of the board per round
+powerInfo.2xPocket=Exchange a pocket of your choice for a Multiplier Pocket, which increases the score multiplier
+powerInfo.create3Walls=Adds 3 new Walls or replaces existing walls
+powerInfo.bouncyWalls3=Adds 3 new Bouncy Walls or replaces existing walls to bounce chips
+powerInfo.numeriousChips=Adds 3 extra chips to the top of the stack
+powerInfo.remove3Pegs=Choose 3 pegs to remove them from the board
+powerInfo.pocket10000=Choose any pocket to increase its value by +10000
+powerInfo.pocket100K=Choose any pocket to increase its value by +100K
+powerInfo.pocketsAllPlus=Increases the value of all pockets by +10000
+powerInfo.clonerPegs2=Choose any 2 pegs to turn them into Cloning Pegs
+These pegs will create a clone of any chip that hits them
+powerupSelectText.pickAPower=Choose an upgrade
+powerupSelectText.dropPucks=Click to drop chip
+powerupSelectText.selectABucket=Click a pocket to upgrade
+powerupSelectText.selectPegsForPower=Click THIS_COUNT peg(s) to upgrade
+powerupSelectText.selectWalls=Click to place THIS_COUNT wall(s)
+powerupSelectText.selectPegsToRemove=Click THIS_COUNT peg(s) to remove
+button.reroll=Refresh
+button.rerollInfo=Refreshes current upgrades
+to a new set of random upgrades
+button.details=Details
+button.play=PLAY
+button.continue=Continue
+button.startNew=Start New
+button.yes=YES
+button.no=NO
+button.continue=Continue
+button.next.round=Next Round
+panelMenu.hands=HELP
+panelMenu.sound=SOUND
+panelMenu.music=MUSIC
+panelMenu.saveAndQuit=SAVE & QUIT
+panelMenu.submitScore=SUBMIT SCORE
+menuTitle.reallyQuit=REALLY QUIT?
+loading=Loading
+endPanel.YourScore=Your Total Score
+endPanel.BestScore=Your Best Score
+endPanel.PlayAgain=PLAY AGAIN
+gameplay.goal=Goal
+gameplay.score=Score
+gameplay.chipsLeft=Chips
+left
+gameplay.round=Round
+gameplay.round.score=ROUND SCORE
+gameplay.total.score=TOTAL SCORE
+gameplay.your.score=Your score:
+gameplay.your.goal=Your goal:
+help.1.1=The Price is Right Plinko Pegs is based on the classic Plinko pricing game from The Price is Right TV show.
+help.1.2=Customize your Plinko board as you play to maximize your winnings. 
+help.2.1=Drop Plinko chips into the top of the board and watch as they tumble down to the bottom. 
+help.2.2=You score a little each time your chip hits a peg, and when your chip lands in a slot. 
+help.3.1=Each round in The Price is Right Plinko Pegs has a score goal that must be reached to continue to the next round. 
+help.3.2=If you score below the goal, the game will end. 
+help.4.1=Before each round, you are given 3 different upgrades to choose from to customize your Plinko board. 
+help.4.2=Select the “details” button to learn more about the upgrades in your menu. 
+help.title.1=Overview
+help.title.2=Gameplay
+help.title.3=Rounds
+help.title.4=Upgrades
+help.button.next=Next
+help.button.previous=Previous
+gameplay.first_round=First Round
+gameplay.beginner_round=Beginner Round
+gameplay.expert_round=Expert Round
+gameplay.master_round=Master Round
+gameplay.champion_round=Champion Round
+gameplay.legendary_round=Legendary Round
+gameplay.final_round=Final Round
+infoPanel.refreshing=Refreshing upgrades after this video

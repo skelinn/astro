@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>Plinko</title>
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <style>
+    html, body {
+      padding: 0;
+      border: 0;
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+  </style>
+  <script>
+  (function() {
+    var _fetch = window.fetch;
+    window.fetch = function(input, init) {
+      var url = typeof input === 'string' ? input : (input && input.url ? input.url : '');
+      if (url.indexOf('arkadiumhosted.com') !== -1 && url.indexOf('arenaxstorage-blob/arenax-games') === -1) {
+        return Promise.resolve(new Response('{}', { status: 200, headers: { 'Content-Type': 'application/json' } }));
+      }
+      return _fetch.call(this, input, init);
+    };
+
+  })();
+  </script>
+</head>
+<body>
+  <div id="gamePlace" style="height: 100%; overflow: hidden"></div>
+  <script src="main.min.js"></script>
+  <script>
+    (function() {
+      function Subject() {
+        this._subs = [];
+        this._last = null;
+      }
+      Subject.prototype.subscribe = function(fn) {
+        if (typeof fn === 'function') this._subs.push(fn);
+        else if (fn && typeof fn.next === 'function') this._subs.push(fn.next.bind(fn));
+        return { unsubscribe: function() {} };
+      };
+      Subject.prototype.next = function(v) {
+        this._last = v;
+        this._subs.forEach(function(fn) { try { fn(v); } catch(e) {} });
+      };
+      Subject.prototype.getValue = function() { return this._last; };
+      Subject.prototype.pipe = function() { return this; };
+      Subject.prototype.asObservable = function() { return this; };
+
+      var store = new Subject();
+      var el = document.getElementById('gamePlace');
+
+      var api = __arenax_v1__.PriceIsRightPlinkoGame.game;
+
+      var opts = {
+        environment: 'production',
+        enviroment: 'production',
+        locale: 'en-US',
+        slug: 'price-is-right-plinko',
+        sdkName: 'PriceIsRightPlinko',
+        rewardVideoAvailable: false,
+        isSubscriber: false,
+        featureOptIn: {},
+        eagleApi: null,
+        trafficSource: 'organic',
+        eventList: [],
+        gameContainer: el,
+        elementId: el
+      };
+
+      try {
+        api.register(store, opts);
+        api.render(el, null, 'gamePlace');
+      } catch(e) {
+        console.error('Game init error:', e.message);
+      }
+    })();
+  </script>
+</body>
+</html>

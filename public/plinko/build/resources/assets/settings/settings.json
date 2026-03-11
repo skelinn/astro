@@ -1,0 +1,20 @@
+{
+  "general": {
+    "showArkadiumLogo":                 1,
+    "clientAPI": "",
+    "showVersionInGame":                0,
+    "gameMode":                         "NORMAL",
+    "useArenaScoring":                  false,
+    "useArenaTracking":                 true
+  },
+
+  "scoring": {
+    "matchScoreValue":            100,
+    "multiMatchScoreValue2":      500,
+    "multiMatchScoreValue3":      1000,
+    "multiMatchScoreValue4":      2000,
+    "missmMatchScoreValue":       0,
+    "speedMatchScoreValue":       300,
+    "matchMulitplierBonusValue":  50
+  }
+}

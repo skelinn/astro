@@ -1,0 +1,653 @@
+{
+	"general": {
+		"_nTimer": 	150,
+		"_nlevels": 0,
+		
+		"_bUseTutorialLevels": true,
+
+		"ballSpawnRateInSeconds":	1.0,
+
+		"levelGridSeparationX":	134.0,
+		"levelGridSeparationY":	100.0,
+
+		"LevelLayout": [[0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0],
+						[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+						[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+						[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+						[0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0],
+						[0,0,0,7,0,7,0,7,0,7,0,7,0,7,0,7,0,0,0],
+						[0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0],
+						[0,0,0,8,0,8,0,8,0,8,0,8,0,8,0,8,0,0,0],
+						[0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0],
+						[0,0,0,7,0,7,0,7,0,7,0,7,0,7,0,7,0,0,0],
+						[0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0],
+						[0,0,0,8,0,8,0,8,0,8,0,8,0,8,0,8,0,0,0],
+						[0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0],
+						[0,0,0,7,0,7,0,7,0,7,0,7,0,7,0,7,0,0,0],
+						[0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0],
+						[0,0,0,8,0,8,0,8,0,8,0,8,0,8,0,8,0,0,0],
+						[0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0],
+						[0,0,0,7,0,7,0,7,0,7,0,7,0,7,0,7,0,0,0],
+						[0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0],
+						[0,0,0,8,0,8,0,8,0,8,0,8,0,8,0,8,0,0,0],
+						[0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0],
+						[0,0,0,7,0,7,0,7,0,7,0,7,0,7,0,7,0,0,0],
+						[0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0],
+						[0,0,0,8,0,8,0,8,0,8,0,8,0,8,0,8,0,0,0],
+						[0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0],
+						[0,0,0,7,0,7,0,7,0,7,0,7,0,7,0,7,0,0,0],
+						[0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0],
+						[0,0,0,8,0,8,0,8,0,8,0,8,0,8,0,8,0,0,0],
+						[0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0],
+						[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+						[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+						[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+						[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+						[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+						[0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0]]
+	},
+
+	"progression": {
+		"maxLevels": 20,
+		"levelDef": [
+						{
+							"levelNumber":		1,
+							"levelName":		"level 1",
+							"levelGoal": 		1000,
+					     	"pucksAllowed":		5
+						},
+						{
+							"levelNumber":		2,
+							"levelName":		"level 2",
+							"levelGoal": 		5000,
+					     	"pucksAllowed":		5000
+						},
+						{
+							"levelNumber":		3,
+							"levelName":		"level 3",
+							"levelGoal": 		10000,
+					     	"pucksAllowed":		5000
+						},
+						{
+							"levelNumber":		4,
+							"levelName":		"level 4",
+							"levelGoal": 		15000,
+					     	"pucksAllowed":		5000
+						},
+						{
+							"levelNumber":		5,
+							"levelName":		"level 5",
+							"levelGoal": 		30000,
+					     	"pucksAllowed":		5000
+						},
+						{
+							"levelNumber":		6,
+							"levelName":		"level 6",
+							"levelGoal": 		50000,
+					     	"pucksAllowed":		5000
+						},
+						{
+							"levelNumber":		7,
+							"levelName":		"level 7",
+							"levelGoal": 		80000,
+					     	"pucksAllowed":		5000
+						},
+						{
+							"levelNumber":		8,
+							"levelName":		"level 8",
+							"levelGoal": 		200000,
+					     	"pucksAllowed":		5000
+						},
+						{
+							"levelNumber":		9,
+							"levelName":		"level 9",
+							"levelGoal": 		300000,
+					     	"pucksAllowed":		5000
+						},
+						{
+							"levelNumber":		10,
+							"levelName":		"level 10",
+							"levelGoal": 		500000,
+					     	"pucksAllowed":		5000
+						},
+						{
+							"levelNumber":		11,
+							"levelName":		"level 11",
+							"levelGoal": 		800000,
+					     	"pucksAllowed":		5000
+						},
+						{
+							"levelNumber":		12,
+							"levelName":		"level 12",
+							"levelGoal": 		2000000,
+					     	"pucksAllowed":		5000
+						},
+						{
+							"levelNumber":		13,
+							"levelName":		"level 13",
+							"levelGoal": 		3000000,
+					     	"pucksAllowed":		5000
+						},
+						{
+							"levelNumber":		14,
+							"levelName":		"level 14",
+							"levelGoal": 		5000000,
+					     	"pucksAllowed":		5000
+						},
+						{
+							"levelNumber":		15,
+							"levelName":		"level 15",
+							"levelGoal": 		8000000,
+					     	"pucksAllowed":		5000
+						},
+						{
+							"levelNumber":		16,
+							"levelName":		"level 16",
+							"levelGoal": 		20000000,
+					     	"pucksAllowed":		5000
+						},
+						{
+							"levelNumber":		17,
+							"levelName":		"level 17",
+							"levelGoal": 		30000000,
+					     	"pucksAllowed":		5000
+						},
+						{
+							"levelNumber":		18,
+							"levelName":		"level 18",
+							"levelGoal": 		50000000,
+					     	"pucksAllowed":		5000
+						},
+						{
+							"levelNumber":		19,
+							"levelName":		"level 19",
+							"levelGoal": 		80000000,
+					     	"pucksAllowed":		5000
+						},
+						{
+							"levelNumber":		20,
+							"levelName":		"level 20",
+							"levelGoal": 		200000000,
+					     	"pucksAllowed":		5000
+						}
+					]
+	},
+
+	"physicalWorld": { 
+		"gravity":				9.8,
+		"gravityMultiplier":	2.0,
+
+		"stepMultiplier":		3.0,
+		
+		"worldToPixelScale":	30.0
+	},
+
+
+	"gameSpec": {
+		"maxChipCount":					75,
+		"defaultDropWidth":				680.0,
+		"minDropWidth":					5.0,
+		"dropHorrizontalVariance":		3.0,
+		"useRandomPuckPositionSpawn":	false,
+		"pegValuePerHit":				30.0,
+		"bouncyPegValuePerHit":			100.0,
+		"magnetPegValuePerHit":			100.0,
+		"puckMaxLifetimeInSeconds":		60.0,
+		"puckSearchBeginTimeInSeconds":	15.0,
+		"puckSearchDurationInSeconds":	3.0,
+		"goldChipMultiplier":			3.0,
+		"usualChipMaxHits":				60.0,
+		"chargingChipMaxHits":			120.0,
+		"lastGoldenHits":				10.0,
+		"chipDestroyedAddMult":			1.0,
+		"chipDestroyedCoeff":			20.0,
+		"valueLessTimerMax":			3.0,
+		
+
+		"wallMultiplierScale": [0, 1, 2, 3, 5, 10, 20],
+
+		"powerupsPresented":	3,
+		"maxRarity":			2092,
+		
+		"powerups": [
+		
+			{
+				"name": 	"ExtraChip",
+				"iconIndex": 10,
+				"rarityVisual":	1,
+				"rarityWeight":	240,
+				"rarityWeightNext":	240,
+				"objClass":	"addPuck",
+				"function": "",
+				"target":	"puck",
+				"locKey":	"powerup.extraChip",
+				"infoKey":	"powerInfo.extraChip",
+				"parameter": {
+					"pucksToAdd": 1
+				}
+			},
+			{
+				"name": 	"Magnet",
+				"iconIndex": 12,
+				"rarityVisual":	1,
+				"rarityWeight":	240,
+				"rarityWeightNext":	240,
+				"objClass":	"addProperty",
+				"function": "magnet",
+				"target":	"peg",
+				"locKey":	"powerup.magnet",
+				"infoKey":	"powerInfo.magnet",
+				"parameter": {
+					"pegs":					1,
+					"magneticPegForce":    	3000.0,
+					"magneticPegOnTime":	1.0,
+					"magneticPegOffTimeNoChips":	0.5,
+					"magneticPegOffTimeWithChips":	3.0,
+					"radius":				1.5,
+					"physicalCore":			true
+				}
+			},
+			{
+				"name": 	"CreateWall",
+				"iconIndex": 9,
+				"rarityVisual":	1,
+				"rarityWeight":	240,
+				"rarityWeightNext":	240,
+				"objClass":	"addProperty",
+				"function": "create",
+				"target":	"wall",
+				"locKey":	"powerup.createWall",
+				"infoKey":	"powerInfo.createWall",
+				"parameter": {
+					"wallCount": 1
+				}
+			},
+			{
+				"name": 	"BouncyWall",
+				"iconIndex": 4,
+				"rarityVisual":	1,
+				"rarityWeight":	240,
+				"rarityWeightNext":	240,
+				"objClass":	"addProperty",
+				"function": "bouncey",
+				"target":	"wall",
+				"locKey":	"powerup.bouncyWall",
+				"infoKey":	"powerInfo.bouncyWall",
+				"parameter": {
+					"wallCount": 1,
+					"restitution": 	0.6,
+					"bounceForce": 1000.0
+				}
+			},
+			{
+				"name": 	"BouncyPegs2",
+				"iconIndex": 3,
+				"rarityVisual":	1,
+				"rarityWeight":	240,
+				"rarityWeightNext":	240,
+				"objClass":	"addProperty",
+				"function": "bouncePower",
+				"target":	"peg",
+				"locKey":	"powerup.bouncyPegs2",
+				"infoKey":	"powerInfo.bouncyPegs2",
+				"parameter": {
+					"pegs":			2,
+					"restitution": 	0.6,
+					"bounceForce":	600.0
+				}
+			},
+			{
+				"name": 	"Pocket3000",
+				"iconIndex": 16,
+				"rarityVisual":	1,
+				"rarityWeight":	240,
+				"rarityWeightNext":	240,
+				"objClass":	"addProperty",
+				"function": "add",
+				"target":	"bucket",
+				"locKey":	"powerup.pocket3000",
+				"infoKey":	"powerInfo.pocket300",
+				"parameter": {
+					"value": 3000,
+					"allPocket": false
+				}
+			},
+
+			{
+				"name": 	"MoreChips",
+				"iconIndex": 14,
+				"rarityVisual":	2,
+				"rarityWeight":	80,
+				"rarityWeightNext":	80,
+				"objClass":	"addPuck",
+				"function": "",
+				"target":	"puck",
+				"locKey":	"powerup.moreChips",
+				"infoKey":	"powerInfo.moreChips",
+				"parameter": {
+					"pucksToAdd": 2
+				}
+			},
+			{
+				"name": 	"ChargingChip",
+				"iconIndex": 5,
+				"rarityVisual":	2,
+				"rarityWeight":	80,
+				"rarityWeightNext":	80,
+				"objClass":	"luckyPuck",
+				"function": "addPower",
+				"target":	"puck",
+				"locKey":	"powerup.chargingChip",
+				"infoKey":	"powerInfo.chargingChip",
+				"parameter": {
+					"pucksToAdd": 1
+				}
+			},
+			{
+				"name": 	"GoldenChip",
+				"iconIndex": 11,
+				"rarityVisual":	2,
+				"rarityWeight":	80,
+				"rarityWeightNext":	80,
+				"objClass":	"goldPuck",
+				"function": "",
+				"target":	"puck",
+				"locKey":	"powerup.goldenChip",
+				"infoKey":	"powerInfo.goldenChip",
+				"parameter": {
+					"pucksToAdd": 1
+				}
+			},
+			{
+				"name": 	"RemovePeg",
+				"iconIndex": 22,
+				"rarityVisual":	2,
+				"rarityWeight":	80,
+				"rarityWeightNext":	80,
+				"objClass":	"removePeg",
+				"function": "remove",
+				"target":	"peg",
+				"locKey":	"powerup.removePeg",
+				"infoKey":	"powerInfo.removePeg",
+				"parameter": {
+					"pucksToAdd": 1,
+					"pegs": 1
+				}
+			},
+			{
+				"name": 	"Pocket6000",
+				"iconIndex": 17,
+				"rarityVisual":	2,
+				"rarityWeight":	80,
+				"rarityWeightNext":	80,
+				"objClass":	"addProperty",
+				"function": "add",
+				"target":	"bucket",
+				"locKey":	"powerup.pocket6000",
+				"infoKey":	"powerInfo.pocket6000",
+				"parameter": {
+					"value": 6000,
+					"allPocket": false
+				}
+			},
+
+
+			{
+				"name": 	"ClonerPeg",
+				"iconIndex": 6,
+				"rarityVisual":	3,
+				"rarityWeight":	30,
+				"rarityWeightNext":	18,
+				"objClass":	"addProperty",
+				"function": "splitter",
+				"target":	"peg",
+				"locKey":	"powerup.clonerPeg",
+				"infoKey":	"powerInfo.clonerPeg",
+				"parameter": {
+					"pegs":		1,
+					"splits": 	2
+				}
+			},
+			{
+				"name": 	"ClonerWall",
+				"iconIndex": 7,
+				"rarityVisual":	3,
+				"rarityWeight":	30,
+				"rarityWeightNext":	18,
+				"objClass":	"addProperty",
+				"function": "splitter",
+				"target":	"wall",
+				"locKey":	"powerup.clonerWall",
+				"infoKey":	"powerInfo.clonerWall",
+				"parameter": {
+					"wallCount": 1,
+					"splits": 2
+				}
+			},
+			{
+				"name": 	"MidasPeg",
+				"iconIndex": 13,
+				"rarityVisual":	3,
+				"rarityWeight":	30,
+				"rarityWeightNext":	18,
+				"objClass":	"addProperty",
+				"function": "super",
+				"target":	"peg",
+				"locKey":	"powerup.midasPeg",
+				"infoKey":	"powerInfo.midasPeg",
+				"parameter": {
+					"pegs":				1,
+					"ActivateTime":		2.0,
+					"SleepTime":		2.0,
+					"MultiplyPower":	2.0
+				}
+			},
+			{
+				"name": 	"Tele-Pocket",
+				"iconIndex": 23,
+				"rarityVisual":	3,
+				"rarityWeight":	30,
+				"rarityWeightNext":	18,
+				"objClass":	"addProperty",
+				"function": "fallthrough",
+				"target":	"bucket",
+				"locKey":	"powerup.telePocket",
+				"infoKey":	"powerInfo.telePocket",
+				"parameter": {
+					"fallCount": 10,
+					"spawnFluctuation": 200
+				}
+			},
+			{
+				"name": 	"x2Pocket",
+				"iconIndex": 19,
+				"rarityVisual":	3,
+				"rarityWeight":	30,
+				"rarityWeightNext":	18,
+				"objClass":	"addProperty",
+				"function": "multiplier",
+				"target":	"bucket",
+				"locKey":	"powerup.x2Pocket",
+				"infoKey":	"powerInfo.2xPocket",
+				"parameter": {
+					"multiplier": 1
+				}
+			},
+			
+			{
+				"name": 	"Create3Walls",
+				"iconIndex": 8,
+				"rarityVisual":	3,
+				"rarityWeight":	18,
+				"rarityWeightNext":	18,
+				"objClass":	"addProperty",
+				"function": "create",
+				"target":	"wall",
+				"locKey":	"powerup.create3Walls",
+				"infoKey":	"powerInfo.create3Walls",
+				"parameter": {
+					"wallCount": 3
+				}
+			},
+			{
+				"name": 	"BouncyWalls3",
+				"iconIndex": 0,
+				"rarityVisual":	3,
+				"rarityWeight":	18,
+				"rarityWeightNext":	18,
+				"objClass":	"addProperty",
+				"function": "bouncey",
+				"target":	"wall",
+				"locKey":	"powerup.bouncyWalls3",
+				"infoKey":	"powerInfo.bouncyWalls3",
+				"parameter": {
+					"wallCount": 3,
+					"restitution": 	0.6,
+					"bounceForce": 1000.0
+				}
+			},
+			{
+				"name": 	"NumeriousChips",
+				"iconIndex": 15,
+				"rarityVisual":	3,
+				"rarityWeight":	18,
+				"rarityWeightNext":	18,
+				"objClass":	"addPuck",
+				"function": "",
+				"target":	"puck",
+				"locKey":	"powerup.numeriousChips",
+				"infoKey":	"powerInfo.numeriousChips",
+				"parameter": {
+					"pucksToAdd": 3
+				}
+			},
+			{
+				"name": 	"Remove3Pegs",
+				"iconIndex": 21,
+				"rarityVisual":	3,
+				"rarityWeight":	18,
+				"rarityWeightNext":	18,
+				"objClass":	"removePeg",
+				"function": "remove",
+				"target":	"peg",
+				"locKey":	"powerup.remove3Pegs",
+				"infoKey":	"powerInfo.remove3Pegs",
+				"parameter": {
+					"pegs": 3
+				}
+			},
+			{
+				"name": 	"Pocket10000",
+				"iconIndex": 18,
+				"rarityVisual":	3,
+				"rarityWeight":	18,
+				"rarityWeightNext":	18,
+				"objClass":	"addProperty",
+				"function": "add",
+				"target":	"bucket",
+				"locKey":	"powerup.pocket10000",
+				"infoKey":	"powerInfo.pocket10000",
+				"parameter": {
+					"value": 10000,
+					"allPocket": false
+				}
+			},
+
+			{
+				"name": 	"ClonerPegs2",
+				"iconIndex": 1,
+				"rarityVisual":	5,
+				"rarityWeight":	4,
+				"rarityWeightNext":	1,
+				"objClass":	"addProperty",
+				"function": "splitter",
+				"target":	"peg",
+				"locKey":	"powerup.clonerPegs2",
+				"infoKey":	"powerInfo.clonerPegs2",
+				"parameter": {
+					"pegs":		2,
+					"splits": 	2
+				}
+			},
+			{
+				"name": 	"Pocket100K",
+				"iconIndex": 20,
+				"rarityVisual":	5,
+				"rarityWeight":	10,
+				"rarityWeightNext":	4,
+				"objClass":	"addProperty",
+				"function": "add",
+				"target":	"bucket",
+				"locKey":	"powerup.pocket100K",
+				"infoKey":	"powerInfo.pocket100K",
+				"parameter": {
+					"value": 100000,
+					"allPocket": false
+				}
+			},
+			{
+				"name": 	"PocketsAllPlus",
+				"iconIndex": 2,
+				"rarityVisual":	5,
+				"rarityWeight":	4,
+				"rarityWeightNext":	4,
+				"objClass":	"addProperty",
+				"function": "add",
+				"target":	"bucket",
+				"locKey":	"powerup.pocketsAllPlus",
+				"infoKey":	"powerInfo.pocketsAllPlus",
+				"parameter": {
+					"value": 10000,
+					"allPocket": true
+				}
+			}
+		],
+
+		
+		"bucketTouchPoints": [ [{"x": -35, "y": -143},
+								{"x": 35, "y": -143},
+								{"x": 45, "y": 143},
+								{"x": -45, "y": 143}],
+
+							   [{"x": -35, "y": -143},
+								   {"x": 35, "y": -143},
+								   {"x": 45, "y": 163},
+								   {"x": -45, "y": 163}],
+
+							   [{"x": -35, "y": -143},
+								   {"x": 35, "y": -143},
+								   {"x": 45, "y": 173},
+								   {"x": -45, "y": 173}],
+
+							   [{"x": -35, "y": -143},
+								   {"x": 35, "y": -143},
+								   {"x": 45, "y": 173},
+								   {"x": -45, "y": 173}],
+
+							   [{"x": -35, "y": -143},
+								   {"x": 35, "y": -143},
+								   {"x": 45, "y": 173},
+								   {"x": -45, "y": 173}],
+
+							   [{"x": -35, "y": -143},
+								   {"x": 35, "y": -143},
+								   {"x": 45, "y": 173},
+								   {"x": -45, "y": 173}],
+
+							   [{"x": -35, "y": -143},
+								   {"x": 35, "y": -143},
+								   {"x": 45, "y": 173},
+								   {"x": -45, "y": 173}],
+
+							   [{"x": -35, "y": -143},
+								   {"x": 35, "y": -143},
+								   {"x": 45, "y": 163},
+								   {"x": -45, "y": 163}],
+
+							   [{"x": -35, "y": -143},
+								   {"x": 35, "y": -143},
+								   {"x": 45, "y": 143},
+								   {"x": -45, "y": 143}]
+							]
+	}
+}

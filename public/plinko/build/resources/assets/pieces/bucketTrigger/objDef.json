@@ -1,0 +1,30 @@
+{
+    "visual":
+    {
+        "scalePercentY":     1,
+        "scalePercentX":     1
+    },
+
+    "physics": 
+    {
+        "isDynamic":  false,
+
+        "physicalBodies":
+        [
+            {
+                "isTrigger":        true,
+                "shape":            "Box", 
+                "physicalScaleDown":    1.0,
+                "width":    2.0,
+                "height":   1.0,
+
+                "offsetX":  0.0,
+                "offsetY":  0.0,
+
+                "friction":     0.0,
+                "mass":         10.0,
+                "restitution":  0.0
+            }    
+        ]
+    }
+}
