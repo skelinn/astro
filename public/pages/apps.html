@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apps</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #232136;
+      color: #e0def4;
+      font-family: 'Outfit', sans-serif;
+      min-height: 100vh;
+      padding: 32px;
+    }
+    .header {
+      margin-bottom: 24px;
+    }
+    .header h1 {
+      font-size: 24px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .header-icon { color: #6b63ff; }
+    .header p {
+      color: #a19eb3;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+    .search-box {
+      width: 100%;
+      max-width: 400px;
+      padding: 10px 16px;
+      background: #1c1a2b;
+      border: 1px solid #3a3758;
+      border-radius: 10px;
+      color: #e0def4;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      margin-bottom: 24px;
+    }
+    .search-box::placeholder { color: #5c5979; }
+    .search-box:focus { border-color: #6b63ff; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 14px;
+    }
+    .card {
+      background: #1c1a2b;
+      border: 1px solid #3a3758;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, transform 0.15s;
+    }
+    .card:hover {
+      background: #2a2740;
+      border-color: #5c59a5;
+      transform: translateY(-2px);
+    }
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin: 0 auto 10px;
+    }
+    .card-title {
+      font-size: 13px;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1><span class="header-icon">&#128187;</span> Apps</h1>
+    <p>Access your favorite sites through the proxy</p>
+  </div>
+  <input type="text" class="search-box" placeholder="Search apps..." id="search" oninput="filterApps()" />
+  <div class="grid" id="grid"></div>
+
+  <script>
+    const apps = [
+      { title: 'YouTube', url: 'https://www.youtube.com', icon: '&#9654;', bg: 'rgba(255,0,0,0.15)', fg: '#ff4444' },
+      { title: 'TikTok', url: 'https://www.tiktok.com', icon: '&#9835;', bg: 'rgba(0,242,234,0.12)', fg: '#00f2ea' },
+      { title: 'Spotify', url: 'https://open.spotify.com', icon: '&#9835;', bg: 'rgba(30,215,96,0.15)', fg: '#1ed760' },
+      { title: 'Netflix', url: 'https://www.netflix.com', icon: 'N', bg: 'rgba(229,9,20,0.15)', fg: '#e50914' },
+      { title: 'Twitter / X', url: 'https://www.x.com', icon: 'X', bg: 'rgba(255,255,255,0.1)', fg: '#e0def4' },
+      { title: 'Reddit', url: 'https://www.reddit.com', icon: '&#9673;', bg: 'rgba(255,69,0,0.15)', fg: '#ff4500' },
+      { title: 'Instagram', url: 'https://www.instagram.com', icon: '&#10064;', bg: 'rgba(225,48,108,0.15)', fg: '#e1306c' },
+      { title: 'Discord', url: 'https://discord.com/app', icon: '&#9741;', bg: 'rgba(88,101,242,0.15)', fg: '#5865f2' },
+      { title: 'GitHub', url: 'https://github.com', icon: '&#10070;', bg: 'rgba(255,255,255,0.1)', fg: '#e0def4' },
+      { title: 'Gmail', url: 'https://mail.google.com', icon: '&#9993;', bg: 'rgba(234,67,53,0.15)', fg: '#ea4335' },
+      { title: 'Google Drive', url: 'https://drive.google.com', icon: '&#9650;', bg: 'rgba(66,133,244,0.15)', fg: '#4285f4' },
+      { title: 'Google Docs', url: 'https://docs.google.com', icon: '&#9776;', bg: 'rgba(66,133,244,0.15)', fg: '#4285f4' },
+      { title: 'ChatGPT', url: 'https://chat.openai.com', icon: '&#9881;', bg: 'rgba(16,163,127,0.15)', fg: '#10a37f' },
+      { title: 'Desmos', url: 'https://www.desmos.com/calculator', icon: '&#8730;', bg: 'rgba(46,139,87,0.15)', fg: '#2e8b57' },
+      { title: 'Kahoot', url: 'https://kahoot.it', icon: '?', bg: 'rgba(70,23,143,0.15)', fg: '#46178f' },
+      { title: 'Quizlet', url: 'https://quizlet.com', icon: 'Q', bg: 'rgba(98,54,255,0.15)', fg: '#6236ff' },
+    ]
+
+    function renderApps(list) {
+      const grid = document.getElementById('grid')
+      grid.innerHTML = list.map(a => `
+        <div class="card" onclick="nav('${a.url}')">
+          <div class="card-icon" style="background:${a.bg};color:${a.fg}">${a.icon}</div>
+          <div class="card-title">${a.title}</div>
+        </div>
+      `).join('')
+    }
+
+    function filterApps() {
+      const q = document.getElementById('search').value.toLowerCase()
+      renderApps(apps.filter(a => a.title.toLowerCase().includes(q)))
+    }
+
+    function nav(url) {
+      window.parent.postMessage({ type: 'navigate', url: url }, '*')
+    }
+
+    renderApps(apps)
+  </script>
+</body>
+</html>

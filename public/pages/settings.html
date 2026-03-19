@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #232136;
+      color: #e0def4;
+      font-family: 'Outfit', sans-serif;
+      min-height: 100vh;
+      padding: 32px;
+    }
+    .header h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .header-icon { color: #6b63ff; }
+    .header p {
+      color: #a19eb3;
+      font-size: 14px;
+      margin-bottom: 32px;
+    }
+    .section {
+      margin-bottom: 28px;
+    }
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #a19eb3;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    .setting-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      background: #1c1a2b;
+      border: 1px solid #3a3758;
+      border-radius: 10px;
+      margin-bottom: 8px;
+    }
+    .setting-label {
+      font-size: 14px;
+    }
+    .setting-desc {
+      font-size: 12px;
+      color: #5c5979;
+      margin-top: 2px;
+    }
+    select {
+      background: #2a2740;
+      color: #e0def4;
+      border: 1px solid #3a3758;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-family: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      outline: none;
+    }
+    select:focus { border-color: #6b63ff; }
+    .toggle {
+      width: 44px;
+      height: 24px;
+      border-radius: 12px;
+      background: #3a3758;
+      cursor: pointer;
+      position: relative;
+      transition: background 0.2s;
+      border: none;
+    }
+    .toggle.active { background: #6b63ff; }
+    .toggle::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #e0def4;
+      top: 3px;
+      left: 3px;
+      transition: transform 0.2s;
+    }
+    .toggle.active::after { transform: translateX(20px); }
+    .status-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+    .status-dot.green { background: #44cc44; }
+    .status-dot.red { background: #ff4444; }
+    .about {
+      padding: 18px;
+      background: #1c1a2b;
+      border: 1px solid #3a3758;
+      border-radius: 10px;
+      font-size: 13px;
+      color: #a19eb3;
+      line-height: 1.8;
+    }
+    .about a { color: #6b63ff; text-decoration: none; }
+    .about a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1><span class="header-icon">&#9881;</span> Settings</h1>
+    <p>Configure your Astro experience</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Search</div>
+    <div class="setting-row">
+      <div>
+        <div class="setting-label">Search Engine</div>
+        <div class="setting-desc">Used when typing queries in the URL bar</div>
+      </div>
+      <select id="search-engine" onchange="saveSetting('searchEngine', this.value)">
+        <option value="duckduckgo" selected>DuckDuckGo</option>
+        <option value="google">Google</option>
+        <option value="bing">Bing</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Proxy</div>
+    <div class="setting-row">
+      <div>
+        <div class="setting-label">Proxy Status</div>
+        <div class="setting-desc">Service worker registration status</div>
+      </div>
+      <div id="proxy-status"><span class="status-dot green"></span>Checking...</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">About</div>
+    <div class="about">
+      <strong>Astro</strong> v1.0.0<br />
+      A browser-in-browser web proxy.<br />
+      Built with React, Ultraviolet, and bare-mux.<br /><br />
+      <a href="https://github.com" target="_blank">Source on GitHub</a>
+    </div>
+  </div>
+
+  <script>
+    // Load saved settings
+    const settings = JSON.parse(localStorage.getItem('astro-settings') || '{}')
+    if (settings.searchEngine) {
+      document.getElementById('search-engine').value = settings.searchEngine
+    }
+
+    function saveSetting(key, value) {
+      const s = JSON.parse(localStorage.getItem('astro-settings') || '{}')
+      s[key] = value
+      localStorage.setItem('astro-settings', JSON.stringify(s))
+    }
+
+    // Check proxy status
+    navigator.serviceWorker?.getRegistration('/service/')
+      .then(reg => {
+        const el = document.getElementById('proxy-status')
+        if (reg) {
+          el.innerHTML = '<span class="status-dot green"></span>Active'
+        } else {
+          el.innerHTML = '<span class="status-dot red"></span>Not registered'
+        }
+      })
+      .catch(() => {
+        document.getElementById('proxy-status').innerHTML =
+          '<span class="status-dot red"></span>Error'
+      })
+  </script>
+</body>
+</html>

@@ -1,18 +1,36 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    {
+      name: 'uv-sw-headers',
+      configureServer(server) {
+        server.middlewares.use((req, res, next) => {
+          if (req.url?.startsWith('/uv/sw.js')) {
+            res.setHeader('Service-Worker-Allowed', '/')
+          }
+          next()
+        })
+      },
+    },
+  ],
+  build: {
+    rollupOptions: {
+      input: {
+        main: 'index.html',
+        browser: 'browser.html',
+      },
+    },
+  },
   server: {
+    port: 5173,
     proxy: {
-      '/api': 'http://localhost:3001',
-      '/p': {
+      '/bare/': {
         target: 'http://localhost:3001',
-        bypass(req) {
-          if (req.url === '/p' || req.url.startsWith('/p?')) return;
-          return req.url;
-        },
+        changeOrigin: false,
+        ws: true,
       },
     },
   },

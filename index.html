@@ -1,13 +1,42 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <title>This content is blocked!</title>
+    <title>IDL Learning Platform — Student Portal</title>
+    <meta name="description" content="Interactive Digital Learning platform for students. Access courses, assignments, and educational resources." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { height: 100%; width: 100%; overflow: hidden; background: #11121c; }
+      .seo-hidden {
+        position: absolute;
+        width: 1px; height: 1px;
+        overflow: hidden;
+        clip: rect(0,0,0,0);
+        white-space: nowrap;
+      }
+      iframe {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        border: none;
+        z-index: 1;
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <div class="seo-hidden">
+      <h1>IDL Learning Platform</h1>
+      <nav>
+        <a href="/courses">Courses</a>
+        <a href="/assignments">Assignments</a>
+        <a href="/grades">Grades</a>
+        <a href="/resources">Resources</a>
+      </nav>
+      <p>Welcome to the Interactive Digital Learning platform. Access your courses, submit assignments, and track your academic progress all in one place.</p>
+      <p>Features include real-time collaboration, video lectures, interactive quizzes, and personalized learning paths.</p>
+    </div>
+    <iframe src="/browser.html" allow="fullscreen; autoplay; encrypted-media; clipboard-write; clipboard-read"></iframe>
   </body>
 </html>
