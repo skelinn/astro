@@ -14,7 +14,16 @@ export default {
       return handleBare(request, url)
     }
 
-    return env.ASSETS.fetch(request)
+    const res = await env.ASSETS.fetch(request)
+
+    // Allow the UV service worker (served from /uv/) to claim scope /service/
+    if (url.pathname === '/uv/sw.js') {
+      const headers = new Headers(res.headers)
+      headers.set('Service-Worker-Allowed', '/')
+      return new Response(res.body, { status: res.status, headers })
+    }
+
+    return res
   },
 }
 
