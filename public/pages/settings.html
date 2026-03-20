@@ -4,120 +4,119 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Settings</title>
+  <script>
+    (function() {
+      const t = localStorage.getItem('astro-color-theme') || 'mono'
+      document.documentElement.setAttribute('data-theme', t)
+    })()
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0f0f0f; --bg2: #1a1a1a; --bg3: #252525;
+      --border: #333; --text: #f0f0f0; --text2: #888; --text3: #555;
+      --accent: #ccc; --shadow: rgba(0,0,0,.5);
+    }
+    :root[data-theme="space"] {
+      --bg: #0d0c18; --bg2: #1c1a2b; --bg3: #2a2740;
+      --border: #3a3758; --text: #e0def4; --text2: #a19eb3; --text3: #5c5979;
+      --accent: #6b63ff; --shadow: rgba(0,0,0,.4);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      background: #232136;
-      color: #e0def4;
+      background: var(--bg);
+      color: var(--text);
       font-family: 'Outfit', sans-serif;
       min-height: 100vh;
       padding: 32px;
     }
-    .header h1 {
-      font-size: 24px;
-      font-weight: 600;
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .header-icon { color: #6b63ff; }
-    .header p {
-      color: #a19eb3;
-      font-size: 14px;
-      margin-bottom: 32px;
-    }
-    .section {
-      margin-bottom: 28px;
-    }
+    .header h1 { font-size:24px; font-weight:600; margin-bottom:4px; }
+    .header-icon { color: var(--accent); }
+    .header p { color: var(--text2); font-size:14px; margin-bottom:32px; }
+    .section { margin-bottom:28px; }
     .section-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: #a19eb3;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 12px;
+      font-size:12px; font-weight:600; color: var(--text2);
+      text-transform:uppercase; letter-spacing:1.2px; margin-bottom:12px;
     }
     .setting-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 18px;
-      background: #1c1a2b;
-      border: 1px solid #3a3758;
-      border-radius: 10px;
-      margin-bottom: 8px;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 18px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius:10px;
+      margin-bottom:8px;
     }
-    .setting-label {
-      font-size: 14px;
-    }
-    .setting-desc {
-      font-size: 12px;
-      color: #5c5979;
-      margin-top: 2px;
-    }
+    .setting-label { font-size:14px; }
+    .setting-desc { font-size:12px; color: var(--text3); margin-top:2px; }
     select {
-      background: #2a2740;
-      color: #e0def4;
-      border: 1px solid #3a3758;
-      border-radius: 6px;
-      padding: 6px 10px;
-      font-family: inherit;
-      font-size: 13px;
-      cursor: pointer;
-      outline: none;
+      background: var(--bg3);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius:6px;
+      padding:6px 10px;
+      font-family:inherit; font-size:13px; cursor:pointer; outline:none;
     }
-    select:focus { border-color: #6b63ff; }
-    .toggle {
-      width: 44px;
-      height: 24px;
-      border-radius: 12px;
-      background: #3a3758;
-      cursor: pointer;
-      position: relative;
-      transition: background 0.2s;
-      border: none;
+    select:focus { border-color: var(--accent); }
+
+    /* Theme picker */
+    .theme-options { display:flex; gap:10px; }
+    .theme-option {
+      display:flex; flex-direction:column; align-items:center; gap:6px;
+      cursor:pointer; padding:8px 14px;
+      background: var(--bg3);
+      border: 2px solid var(--border);
+      border-radius:10px;
+      transition: border-color 0.15s;
+      font-size:12px; color: var(--text2);
     }
-    .toggle.active { background: #6b63ff; }
-    .toggle::after {
-      content: '';
-      position: absolute;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: #e0def4;
-      top: 3px;
-      left: 3px;
-      transition: transform 0.2s;
+    .theme-option.active { border-color: var(--accent); color: var(--text); }
+    .theme-option:hover { border-color: var(--text2); }
+    .theme-swatch {
+      width:48px; height:32px; border-radius:6px;
+      border: 1px solid rgba(255,255,255,0.1);
+      display:flex; align-items:center; justify-content:center;
     }
-    .toggle.active::after { transform: translateX(20px); }
-    .status-dot {
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      margin-right: 8px;
-    }
-    .status-dot.green { background: #44cc44; }
-    .status-dot.red { background: #ff4444; }
+    .swatch-mono { background: linear-gradient(135deg, #1a1a1a 50%, #333 50%); }
+    .swatch-space { background: linear-gradient(135deg, #1c1a2b 50%, #6b63ff 50%); }
+
+    .status-dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:8px; }
+    .status-dot.green { background:#44cc44; }
+    .status-dot.red { background:#ff4444; }
     .about {
-      padding: 18px;
-      background: #1c1a2b;
-      border: 1px solid #3a3758;
-      border-radius: 10px;
-      font-size: 13px;
-      color: #a19eb3;
-      line-height: 1.8;
+      padding:18px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius:10px;
+      font-size:13px; color: var(--text2); line-height:1.8;
     }
-    .about a { color: #6b63ff; text-decoration: none; }
-    .about a:hover { text-decoration: underline; }
+    .about a { color: var(--accent); text-decoration:none; }
+    .about a:hover { text-decoration:underline; }
   </style>
 </head>
 <body>
   <div class="header">
-    <h1><span class="header-icon">&#9881;</span> Settings</h1>
-    <p>Configure your Astro experience</p>
+    <h1><span class="header-icon">⚙</span> Settings</h1>
+    <p>Configure your experience</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Appearance</div>
+    <div class="setting-row">
+      <div>
+        <div class="setting-label">Color Theme</div>
+        <div class="setting-desc">Changes colors across all pages</div>
+      </div>
+      <div class="theme-options">
+        <div class="theme-option" id="opt-mono" onclick="setTheme('mono')">
+          <div class="theme-swatch swatch-mono"></div>
+          Mono
+        </div>
+        <div class="theme-option" id="opt-space" onclick="setTheme('space')">
+          <div class="theme-swatch swatch-space"></div>
+          Space
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="section">
@@ -128,9 +127,8 @@
         <div class="setting-desc">Used when typing queries in the URL bar</div>
       </div>
       <select id="search-engine" onchange="saveSetting('searchEngine', this.value)">
-        <option value="duckduckgo" selected>DuckDuckGo</option>
-        <option value="google">Google</option>
-        <option value="bing">Bing</option>
+        <option value="bing" selected>Bing</option>
+        <option value="duckduckgo">DuckDuckGo (lite)</option>
       </select>
     </div>
   </div>
@@ -150,17 +148,29 @@
     <div class="section-title">About</div>
     <div class="about">
       <strong>Astro</strong> v1.0.0<br />
-      A browser-in-browser web proxy.<br />
       Built with React, Ultraviolet, and bare-mux.<br /><br />
-      <a href="https://github.com" target="_blank">Source on GitHub</a>
+      <a href="https://github.com/skelinn/astro" target="_blank">Source on GitHub</a>
     </div>
   </div>
 
   <script>
-    // Load saved settings
-    const settings = JSON.parse(localStorage.getItem('astro-settings') || '{}')
-    if (settings.searchEngine) {
-      document.getElementById('search-engine').value = settings.searchEngine
+    const s = JSON.parse(localStorage.getItem('astro-settings') || '{}')
+    if (s.searchEngine) document.getElementById('search-engine').value = s.searchEngine
+
+    // Highlight active theme option
+    function syncThemeUI() {
+      const current = localStorage.getItem('astro-color-theme') || 'mono'
+      document.getElementById('opt-mono').classList.toggle('active', current === 'mono')
+      document.getElementById('opt-space').classList.toggle('active', current === 'space')
+    }
+    syncThemeUI()
+
+    function setTheme(theme) {
+      localStorage.setItem('astro-color-theme', theme)
+      document.documentElement.setAttribute('data-theme', theme === 'space' ? 'space' : '')
+      syncThemeUI()
+      // Notify parent BrowserShell
+      window.parent.postMessage({ type: 'themeChange', theme }, '*')
     }
 
     function saveSetting(key, value) {
@@ -169,15 +179,12 @@
       localStorage.setItem('astro-settings', JSON.stringify(s))
     }
 
-    // Check proxy status
     navigator.serviceWorker?.getRegistration('/service/')
       .then(reg => {
         const el = document.getElementById('proxy-status')
-        if (reg) {
-          el.innerHTML = '<span class="status-dot green"></span>Active'
-        } else {
-          el.innerHTML = '<span class="status-dot red"></span>Not registered'
-        }
+        el.innerHTML = reg
+          ? '<span class="status-dot green"></span>Active'
+          : '<span class="status-dot red"></span>Not registered'
       })
       .catch(() => {
         document.getElementById('proxy-status').innerHTML =

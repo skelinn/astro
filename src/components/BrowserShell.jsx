@@ -24,6 +24,7 @@ function resolveUrl(input) {
   if (trimmed === 'astro://apps') return { display: 'astro://apps', src: '/pages/apps.html' }
   if (trimmed === 'astro://settings') return { display: 'astro://settings', src: '/pages/settings.html' }
   if (trimmed.startsWith('astro://')) return { display: trimmed, src: '/new.html' }
+  if (trimmed.startsWith('/')) return { display: trimmed, src: trimmed }
 
   let url = trimmed
   if (!/^https?:\/\//i.test(url)) {
@@ -45,6 +46,11 @@ function createTab(url = 'astro://new') {
   return { id, title: 'New Tab', favicon: null, url: resolved.display, src: resolved.src }
 }
 
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme === 'space' ? 'space' : '')
+  localStorage.setItem('astro-color-theme', theme)
+}
+
 export default function BrowserShell() {
   const [tabs, setTabs] = useState(() => [createTab()])
   const [activeTabId, setActiveTabId] = useState(1)
@@ -54,6 +60,12 @@ export default function BrowserShell() {
   const [menuOpen, setMenuOpen] = useState(false)
   const iframeRefs = useRef({})
   const menuRef = useRef(null)
+
+  // Apply saved theme on mount (default: mono)
+  useEffect(() => {
+    const saved = localStorage.getItem('astro-color-theme') || 'mono'
+    applyTheme(saved)
+  }, [])
 
   const activeTab = tabs.find((t) => t.id === activeTabId) || tabs[0]
 
@@ -107,6 +119,8 @@ export default function BrowserShell() {
             t.id === activeTabId ? { ...t, title: e.data.title } : t
           )
         )
+      } else if (e.data.type === 'themeChange') {
+        applyTheme(e.data.theme)
       }
     }
     window.addEventListener('message', handleMessage)

@@ -4,164 +4,181 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>New Tab</title>
+  <script>
+    (function() {
+      const t = localStorage.getItem('astro-color-theme') || 'mono'
+      document.documentElement.setAttribute('data-theme', t)
+    })()
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0f0f0f; --bg2: #1a1a1a; --bg3: #252525;
+      --border: #333; --text: #f0f0f0; --text2: #888; --text3: #555;
+      --accent: #ccc; --shadow: rgba(0,0,0,.5);
+      --particle: 200,200,200;
+    }
+    :root[data-theme="space"] {
+      --bg: #1c1a2b; --bg2: #232136; --bg3: #2a2740;
+      --border: #3a3758; --text: #e0def4; --text2: #a19eb3; --text3: #5c5979;
+      --accent: #6b63ff; --shadow: rgba(0,0,0,.4);
+      --particle: 107,99,255;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { height:100%; }
     body {
-      background: #232136;
-      color: #e0def4;
+      background: var(--bg);
+      color: var(--text);
       font-family: 'Outfit', sans-serif;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      overflow: hidden; position: relative;
     }
-    .clock {
-      font-size: 72px;
-      font-weight: 300;
-      letter-spacing: 2px;
-      margin-bottom: 8px;
-    }
-    .clock-period {
-      font-size: 24px;
-      font-weight: 400;
-      color: #a19eb3;
-      margin-left: 8px;
-    }
-    .subtitle {
-      font-size: 16px;
-      color: #a19eb3;
-      margin-bottom: 48px;
-    }
+    canvas#stars { position:fixed; inset:0; z-index:0; pointer-events:none; }
+    .main { position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; }
+    .clock { font-size:72px; font-weight:300; letter-spacing:2px; margin-bottom:8px; }
+    .clock-period { font-size:24px; font-weight:400; color:var(--text2); margin-left:8px; }
+    .subtitle { font-size:16px; color:var(--text2); margin-bottom:48px; }
     .quick-links {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      max-width: 480px;
-      width: 90%;
+      display:grid; grid-template-columns:repeat(3,1fr);
+      gap:12px; max-width:480px; width:90%;
     }
     .quick-link {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 18px;
-      background: #1c1a2b;
-      border: 1px solid #3a3758;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: background 0.15s, border-color 0.15s, transform 0.15s;
-      text-decoration: none;
-      color: #e0def4;
+      display:flex; align-items:center; gap:12px;
+      padding:14px 18px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius:12px; cursor:pointer;
+      transition:background 0.15s, border-color 0.15s, transform 0.15s;
+      color: var(--text);
+      backdrop-filter: blur(8px);
     }
     .quick-link:hover {
-      background: #2a2740;
-      border-color: #5c59a5;
-      transform: translateY(-2px);
+      background: var(--bg3); border-color: var(--accent); transform:translateY(-2px);
     }
     .ql-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
+      width:36px; height:36px; border-radius:8px;
+      display:flex; align-items:center; justify-content:center;
+      flex-shrink:0; background:var(--bg3); overflow:hidden;
     }
-    .ql-title {
-      font-size: 13px;
-      font-weight: 500;
-    }
-    .ql-youtube .ql-icon { background: rgba(255,0,0,0.15); color: #ff4444; }
-    .ql-discord .ql-icon { background: rgba(88,101,242,0.15); color: #5865f2; }
-    .ql-github .ql-icon { background: rgba(255,255,255,0.1); color: #e0def4; }
-    .ql-google .ql-icon { background: rgba(66,133,244,0.15); color: #4285f4; }
-    .ql-wikipedia .ql-icon { background: rgba(255,255,255,0.1); color: #e0def4; }
-    .ql-reddit .ql-icon { background: rgba(255,69,0,0.15); color: #ff4500; }
+    .ql-icon img { width:24px; height:24px; object-fit:contain; }
+    .ql-title { font-size:13px; font-weight:500; }
     .footer {
-      position: fixed;
-      bottom: 16px;
-      left: 0;
-      right: 0;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 24px;
-      font-size: 11px;
-      color: #5c5979;
+      position:fixed; bottom:16px; left:0; right:0;
+      display:flex; justify-content:space-between;
+      padding:0 24px; font-size:11px; color:var(--text3);
+      z-index:1;
     }
-    .footer a { color: #6b63ff; text-decoration: none; }
-    .footer a:hover { text-decoration: underline; }
+    .footer a { color:var(--accent); text-decoration:none; }
+    .footer a:hover { text-decoration:underline; }
     .ping-dot {
-      display: inline-block;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #44cc44;
-      margin-right: 6px;
-      vertical-align: middle;
+      display:inline-block; width:6px; height:6px;
+      border-radius:50%; background:#44cc44; margin-right:6px; vertical-align:middle;
     }
-
-    @media (max-width: 600px) {
-      .clock { font-size: 48px; }
-      .quick-links { grid-template-columns: repeat(2, 1fr); }
+    @media(max-width:600px) {
+      .clock{font-size:48px;}
+      .quick-links{grid-template-columns:repeat(2,1fr);}
     }
   </style>
 </head>
 <body>
-  <div class="clock" id="clock"></div>
-  <div class="subtitle">What will you explore today?</div>
-
-  <div class="quick-links">
-    <div class="quick-link ql-youtube" onclick="nav('https://www.youtube.com')">
-      <div class="ql-icon">&#9654;</div>
-      <div class="ql-title">YouTube</div>
-    </div>
-    <div class="quick-link ql-discord" onclick="nav('https://discord.com/app')">
-      <div class="ql-icon">&#9741;</div>
-      <div class="ql-title">Discord</div>
-    </div>
-    <div class="quick-link ql-github" onclick="nav('https://github.com')">
-      <div class="ql-icon">&#10070;</div>
-      <div class="ql-title">GitHub</div>
-    </div>
-    <div class="quick-link ql-google" onclick="nav('https://www.google.com')">
-      <div class="ql-icon">G</div>
-      <div class="ql-title">Google</div>
-    </div>
-    <div class="quick-link ql-wikipedia" onclick="nav('https://en.wikipedia.org')">
-      <div class="ql-icon">W</div>
-      <div class="ql-title">Wikipedia</div>
-    </div>
-    <div class="quick-link ql-reddit" onclick="nav('https://www.reddit.com')">
-      <div class="ql-icon">&#9673;</div>
-      <div class="ql-title">Reddit</div>
+  <canvas id="stars"></canvas>
+  <div class="main">
+    <div class="clock" id="clock"></div>
+    <div class="subtitle">What will you explore today?</div>
+    <div class="quick-links">
+      <div class="quick-link" onclick="nav('https://www.youtube.com')">
+        <div class="ql-icon"><img src="https://icons.duckduckgo.com/ip3/youtube.com.ico" alt="YouTube" onerror="this.parentElement.textContent='Y'" /></div>
+        <div class="ql-title">YøuTube</div>
+      </div>
+      <div class="quick-link" onclick="nav('https://discord.com/app')">
+        <div class="ql-icon"><img src="https://icons.duckduckgo.com/ip3/discord.com.ico" alt="Discord" onerror="this.parentElement.textContent='D'" /></div>
+        <div class="ql-title">Díscørd</div>
+      </div>
+      <div class="quick-link" onclick="nav('https://github.com')">
+        <div class="ql-icon"><img src="https://icons.duckduckgo.com/ip3/github.com.ico" alt="GitHub" onerror="this.parentElement.textContent='G'" /></div>
+        <div class="ql-title">GïtHub</div>
+      </div>
+      <div class="quick-link" onclick="nav('https://www.google.com')">
+        <div class="ql-icon"><img src="https://icons.duckduckgo.com/ip3/google.com.ico" alt="Google" onerror="this.parentElement.textContent='G'" /></div>
+        <div class="ql-title">Gøøgle</div>
+      </div>
+      <div class="quick-link" onclick="nav('https://en.wikipedia.org')">
+        <div class="ql-icon"><img src="https://icons.duckduckgo.com/ip3/wikipedia.org.ico" alt="Wikipedia" onerror="this.parentElement.textContent='W'" /></div>
+        <div class="ql-title">Wïkipedia</div>
+      </div>
+      <div class="quick-link" onclick="nav('https://www.reddit.com')">
+        <div class="ql-icon"><img src="https://icons.duckduckgo.com/ip3/reddit.com.ico" alt="Reddit" onerror="this.parentElement.textContent='R'" /></div>
+        <div class="ql-title">Rëddït</div>
+      </div>
     </div>
   </div>
 
   <div class="footer">
     <div><span class="ping-dot"></span>Connected</div>
-    <div>v1.0.0 · <a href="https://github.com" target="_blank">GitHub</a></div>
+    <div>v1.0.0 · <a href="https://github.com/skelinn/astro" target="_blank">GitHub</a></div>
   </div>
 
   <script>
+    // ── Particle network ──────────────────────────────────────
+    const canvas = document.getElementById('stars')
+    const ctx = canvas.getContext('2d')
+    let W, H, particles, particleColor = [200,200,200]
+
+    function readParticleColor() {
+      const raw = getComputedStyle(document.documentElement).getPropertyValue('--particle').trim()
+      particleColor = raw.split(',').map(Number)
+    }
+    function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight }
+    function makeParticle() {
+      return { x:Math.random()*W, y:Math.random()*H, vx:(Math.random()-.5)*.4, vy:(Math.random()-.5)*.4, r:Math.random()*1.5+1 }
+    }
+    function initParticles() { particles = Array.from({length:80}, makeParticle) }
+    function drawFrame() {
+      ctx.clearRect(0,0,W,H)
+      const [r,g,b] = particleColor
+      for (const p of particles) {
+        p.x+=p.vx; p.y+=p.vy
+        if(p.x<0||p.x>W)p.vx*=-1; if(p.y<0||p.y>H)p.vy*=-1
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2)
+        ctx.fillStyle=`rgba(${r},${g},${b},0.6)`; ctx.fill()
+      }
+      const maxDist=130
+      for(let i=0;i<particles.length;i++) for(let j=i+1;j<particles.length;j++){
+        const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,dist=Math.sqrt(dx*dx+dy*dy)
+        if(dist<maxDist){
+          ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y)
+          ctx.strokeStyle=`rgba(${r},${g},${b},${(1-dist/maxDist)*.25})`;ctx.lineWidth=0.8;ctx.stroke()
+        }
+      }
+      requestAnimationFrame(drawFrame)
+    }
+    window.addEventListener('resize',()=>{resize();initParticles()})
+    resize(); readParticleColor(); initParticles(); drawFrame()
+
+    // Theme sync via storage event
+    window.addEventListener('storage', e => {
+      if (e.key === 'astro-color-theme') {
+        document.documentElement.setAttribute('data-theme', e.newValue || 'mono')
+        readParticleColor()
+      }
+    })
+
+    // ── Clock ─────────────────────────────────────────────────
     function updateClock() {
       const now = new Date()
       let h = now.getHours()
-      const m = String(now.getMinutes()).padStart(2, '0')
-      const s = String(now.getSeconds()).padStart(2, '0')
-      const period = h >= 12 ? 'PM' : 'AM'
-      h = h % 12 || 12
+      const m = String(now.getMinutes()).padStart(2,'0')
+      const s = String(now.getSeconds()).padStart(2,'0')
+      const period = h>=12?'PM':'AM'
+      h = h%12||12
       document.getElementById('clock').innerHTML =
         `${h}:${m}:${s}<span class="clock-period">${period}</span>`
     }
-    updateClock()
-    setInterval(updateClock, 1000)
+    updateClock(); setInterval(updateClock, 1000)
 
-    function nav(url) {
-      window.parent.postMessage({ type: 'navigate', url: url }, '*')
-    }
+    function nav(url) { window.parent.postMessage({ type:'navigate', url }, '*') }
   </script>
 </body>
 </html>

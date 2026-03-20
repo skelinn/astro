@@ -4,115 +4,175 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Apps</title>
+  <script>
+    (function() {
+      const t = localStorage.getItem('astro-color-theme') || 'mono'
+      document.documentElement.setAttribute('data-theme', t)
+    })()
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0f0f0f; --bg2: #1a1a1a; --bg3: #252525;
+      --border: #333; --text: #f0f0f0; --text2: #888; --text3: #555;
+      --accent: #ccc; --shadow: rgba(0,0,0,.5);
+      --particle: 200,200,200;
+    }
+    :root[data-theme="space"] {
+      --bg: #0d0c18; --bg2: #1c1a2b; --bg3: #2a2740;
+      --border: #3a3758; --text: #e0def4; --text2: #a19eb3; --text3: #5c5979;
+      --accent: #6b63ff; --shadow: rgba(0,0,0,.4);
+      --particle: 107,99,255;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { height:100%; }
     body {
-      background: #232136;
-      color: #e0def4;
+      background: var(--bg);
+      color: var(--text);
       font-family: 'Outfit', sans-serif;
       min-height: 100vh;
       padding: 32px;
+      position: relative;
+      overflow-x: hidden;
     }
-    .header {
-      margin-bottom: 24px;
-    }
-    .header h1 {
-      font-size: 24px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .header-icon { color: #6b63ff; }
-    .header p {
-      color: #a19eb3;
-      font-size: 14px;
-      margin-top: 4px;
-    }
+    canvas#stars { position:fixed; inset:0; z-index:0; pointer-events:none; }
+    .content { position:relative; z-index:1; }
+    .header { margin-bottom:24px; }
+    .header h1 { font-size:24px; font-weight:600; display:flex; align-items:center; gap:10px; }
+    .header-icon { color: var(--accent); }
+    .header p { color: var(--text2); font-size:14px; margin-top:4px; }
     .search-box {
-      width: 100%;
-      max-width: 400px;
-      padding: 10px 16px;
-      background: #1c1a2b;
-      border: 1px solid #3a3758;
-      border-radius: 10px;
-      color: #e0def4;
-      font-size: 14px;
-      font-family: inherit;
-      outline: none;
-      margin-bottom: 24px;
+      width:100%; max-width:400px;
+      padding:10px 16px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius:10px;
+      color: var(--text);
+      font-size:14px; font-family:inherit; outline:none;
+      margin-bottom:24px;
     }
-    .search-box::placeholder { color: #5c5979; }
-    .search-box:focus { border-color: #6b63ff; }
+    .search-box::placeholder { color: var(--text3); }
+    .search-box:focus { border-color: var(--accent); }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       gap: 14px;
     }
     .card {
-      background: #1c1a2b;
-      border: 1px solid #3a3758;
-      border-radius: 12px;
-      padding: 20px;
+      background: rgba(26,26,26,0.8);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 16px;
       text-align: center;
       cursor: pointer;
-      transition: background 0.15s, border-color 0.15s, transform 0.15s;
+      transition: background 0.15s, border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+      backdrop-filter: blur(8px);
     }
+    :root[data-theme="space"] .card { background: rgba(28,26,43,0.75); }
     .card:hover {
-      background: #2a2740;
-      border-color: #5c59a5;
-      transform: translateY(-2px);
+      background: var(--bg3);
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px var(--shadow);
     }
     .card-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      margin: 0 auto 10px;
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 12px;
+      overflow: hidden;
+      background: var(--bg3);
+      font-size: 20px; font-weight: 700; color: var(--text);
     }
-    .card-title {
-      font-size: 13px;
-      font-weight: 500;
-    }
+    .card-icon img { width:36px; height:36px; object-fit:contain; display:block; }
+    .card-title { font-size:13px; font-weight:500; }
   </style>
 </head>
 <body>
-  <div class="header">
-    <h1><span class="header-icon">&#128187;</span> Apps</h1>
-    <p>Access your favorite sites through the proxy</p>
+  <canvas id="stars"></canvas>
+  <div class="content">
+    <div class="header">
+      <h1><span class="header-icon">⬛</span> Apps</h1>
+      <p>Áccess yøur fàvorite sites</p>
+    </div>
+    <input type="text" class="search-box" placeholder="Seàrch àpps..." id="search" oninput="filterApps()" />
+    <div class="grid" id="grid"></div>
   </div>
-  <input type="text" class="search-box" placeholder="Search apps..." id="search" oninput="filterApps()" />
-  <div class="grid" id="grid"></div>
 
   <script>
+    // ── Particle network ──────────────────────────────────────
+    const canvas = document.getElementById('stars')
+    const ctx = canvas.getContext('2d')
+    let W, H, particles, particleColor = [200,200,200]
+
+    function readParticleColor() {
+      const raw = getComputedStyle(document.documentElement).getPropertyValue('--particle').trim()
+      particleColor = raw.split(',').map(Number)
+    }
+    function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight }
+    function makeParticle() {
+      return { x:Math.random()*W, y:Math.random()*H, vx:(Math.random()-.5)*.4, vy:(Math.random()-.5)*.4, r:Math.random()*1.5+1 }
+    }
+    function initParticles() { particles = Array.from({length:80}, makeParticle) }
+    function drawFrame() {
+      ctx.clearRect(0,0,W,H)
+      const [r,g,b] = particleColor
+      for (const p of particles) {
+        p.x+=p.vx; p.y+=p.vy
+        if(p.x<0||p.x>W)p.vx*=-1; if(p.y<0||p.y>H)p.vy*=-1
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2)
+        ctx.fillStyle=`rgba(${r},${g},${b},0.7)`; ctx.fill()
+      }
+      const maxDist=130
+      for(let i=0;i<particles.length;i++) for(let j=i+1;j<particles.length;j++){
+        const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,dist=Math.sqrt(dx*dx+dy*dy)
+        if(dist<maxDist){
+          ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y)
+          ctx.strokeStyle=`rgba(${r},${g},${b},${(1-dist/maxDist)*.3})`;ctx.lineWidth=0.8;ctx.stroke()
+        }
+      }
+      requestAnimationFrame(drawFrame)
+    }
+    window.addEventListener('resize',()=>{resize();initParticles()})
+    resize(); readParticleColor(); initParticles(); drawFrame()
+
+    window.addEventListener('storage', e => {
+      if (e.key === 'astro-color-theme') {
+        document.documentElement.setAttribute('data-theme', e.newValue || 'mono')
+        readParticleColor()
+      }
+    })
+
+    // ── Apps (names obfuscated with Unicode substitutions) ────
     const apps = [
-      { title: 'YouTube', url: 'https://www.youtube.com', icon: '&#9654;', bg: 'rgba(255,0,0,0.15)', fg: '#ff4444' },
-      { title: 'TikTok', url: 'https://www.tiktok.com', icon: '&#9835;', bg: 'rgba(0,242,234,0.12)', fg: '#00f2ea' },
-      { title: 'Spotify', url: 'https://open.spotify.com', icon: '&#9835;', bg: 'rgba(30,215,96,0.15)', fg: '#1ed760' },
-      { title: 'Netflix', url: 'https://www.netflix.com', icon: 'N', bg: 'rgba(229,9,20,0.15)', fg: '#e50914' },
-      { title: 'Twitter / X', url: 'https://www.x.com', icon: 'X', bg: 'rgba(255,255,255,0.1)', fg: '#e0def4' },
-      { title: 'Reddit', url: 'https://www.reddit.com', icon: '&#9673;', bg: 'rgba(255,69,0,0.15)', fg: '#ff4500' },
-      { title: 'Instagram', url: 'https://www.instagram.com', icon: '&#10064;', bg: 'rgba(225,48,108,0.15)', fg: '#e1306c' },
-      { title: 'Discord', url: 'https://discord.com/app', icon: '&#9741;', bg: 'rgba(88,101,242,0.15)', fg: '#5865f2' },
-      { title: 'GitHub', url: 'https://github.com', icon: '&#10070;', bg: 'rgba(255,255,255,0.1)', fg: '#e0def4' },
-      { title: 'Gmail', url: 'https://mail.google.com', icon: '&#9993;', bg: 'rgba(234,67,53,0.15)', fg: '#ea4335' },
-      { title: 'Google Drive', url: 'https://drive.google.com', icon: '&#9650;', bg: 'rgba(66,133,244,0.15)', fg: '#4285f4' },
-      { title: 'Google Docs', url: 'https://docs.google.com', icon: '&#9776;', bg: 'rgba(66,133,244,0.15)', fg: '#4285f4' },
-      { title: 'ChatGPT', url: 'https://chat.openai.com', icon: '&#9881;', bg: 'rgba(16,163,127,0.15)', fg: '#10a37f' },
-      { title: 'Desmos', url: 'https://www.desmos.com/calculator', icon: '&#8730;', bg: 'rgba(46,139,87,0.15)', fg: '#2e8b57' },
-      { title: 'Kahoot', url: 'https://kahoot.it', icon: '?', bg: 'rgba(70,23,143,0.15)', fg: '#46178f' },
-      { title: 'Quizlet', url: 'https://quizlet.com', icon: 'Q', bg: 'rgba(98,54,255,0.15)', fg: '#6236ff' },
+      { title: 'YøuTube',      url: 'https://www.youtube.com',           domain: 'youtube.com' },
+      { title: 'TïkTøk',       url: 'https://www.tiktok.com',            domain: 'tiktok.com' },
+      { title: 'Spøtify',      url: 'https://open.spotify.com',          domain: 'spotify.com' },
+      { title: 'Nétflïx',      url: 'https://www.netflix.com',           domain: 'netflix.com' },
+      { title: 'Xïtter',       url: 'https://www.x.com',                 domain: 'x.com' },
+      { title: 'Rëddït',       url: 'https://www.reddit.com',            domain: 'reddit.com' },
+      { title: 'Ïnstagram',    url: 'https://www.instagram.com',         domain: 'instagram.com' },
+      { title: 'Díscørd',      url: 'https://discord.com/app',           domain: 'discord.com' },
+      { title: 'GïtHub',       url: 'https://github.com',                domain: 'github.com' },
+      { title: 'Gmaïl',        url: 'https://mail.google.com',           domain: 'mail.google.com' },
+      { title: 'Drïve',        url: 'https://drive.google.com',          domain: 'drive.google.com' },
+      { title: 'Døcs',         url: 'https://docs.google.com',           domain: 'docs.google.com' },
+      { title: 'ChàtAÏ',       url: 'https://chat.openai.com',           domain: 'openai.com' },
+      { title: 'Désmøs',       url: 'https://www.desmos.com/calculator', domain: 'desmos.com' },
+      { title: 'Kahøøt',       url: 'https://kahoot.it',                 domain: 'kahoot.it' },
+      { title: 'Quïzlet',      url: 'https://quizlet.com',               domain: 'quizlet.com' },
     ]
 
+    function iconHtml(domain, title) {
+      const letter = title.replace(/[^a-zA-Z]/g,'')[0]?.toUpperCase() || '?'
+      return `<img src="https://icons.duckduckgo.com/ip3/${domain}.ico" alt="${title}"
+        onerror="this.style.display='none';this.parentElement.textContent='${letter}'" />`
+    }
+
     function renderApps(list) {
-      const grid = document.getElementById('grid')
-      grid.innerHTML = list.map(a => `
+      document.getElementById('grid').innerHTML = list.map(a => `
         <div class="card" onclick="nav('${a.url}')">
-          <div class="card-icon" style="background:${a.bg};color:${a.fg}">${a.icon}</div>
+          <div class="card-icon">${iconHtml(a.domain, a.title)}</div>
           <div class="card-title">${a.title}</div>
         </div>
       `).join('')
@@ -123,9 +183,7 @@
       renderApps(apps.filter(a => a.title.toLowerCase().includes(q)))
     }
 
-    function nav(url) {
-      window.parent.postMessage({ type: 'navigate', url: url }, '*')
-    }
+    function nav(url) { window.parent.postMessage({ type:'navigate', url }, '*') }
 
     renderApps(apps)
   </script>
